@@ -24,6 +24,7 @@ blocks:
         commands:
           - checkout
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+    dependencies: []
   - name: Tests
     task:
       secrets:
@@ -42,3 +43,18 @@ blocks:
           - 'docker-compose run drkiq rake db:reset RAILS_ENV=test'
           - 'docker-compose run drkiq rake db:create RAILS_ENV=test'
           - 'docker-compose run drkiq rake db:migrate RAILS_ENV=test'
+    dependencies:
+      - Build
+  - name: Digital Ocean
+    dependencies: []
+    task:
+      secrets:
+        - name: Digital Ocean
+      env_vars:
+        - name: KUBECONFIG
+          value: /home/semaphore/.kube/dok8s.yml
+      jobs:
+        - name: Get nodes
+          commands:
+            - checkout
+            - kubectl get nodes
