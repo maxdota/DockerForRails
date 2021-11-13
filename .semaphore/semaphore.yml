@@ -57,4 +57,4 @@ blocks:
         - name: Get nodes
           commands:
             - checkout
-            - cd .kube && kubectl --kubeconfig="dok8s.yaml" get nodes
+            - cd /home/semaphore/.kube && kubectl --kubeconfig="dok8s.yaml" get nodes
