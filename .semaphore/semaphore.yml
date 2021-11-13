@@ -24,7 +24,8 @@ blocks:
         commands:
           - checkout
           - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
-    dependencies: []
+    dependencies:
+      - Digital Ocean
   - name: Tests
     task:
       secrets:
