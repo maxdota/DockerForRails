@@ -57,4 +57,4 @@ blocks:
         - name: Get nodes
           commands:
             - checkout
-            - kubectl get nodes
+            - cd .kube && kubectl --kubeconfig="dok8s.yaml" get nodes
